@@ -13,7 +13,7 @@ To run the scripts, you need:
 Just run:
 
 ```shell
-./void-install.sh /dev/sdx voidvm host
+./void-install.sh /dev/sdx voidvm host bootloader-id
 ```
 
 Replacing:
@@ -21,6 +21,7 @@ Replacing:
 * **voidvm** with the name of the volume group you want to use. Must not already
 be present on the machine you are using to perform the installation.
 * **host** hostname to use for the new machine.
+* **bootloader-id** with a *unique* bootloader id for GRUB2.
 
 ## Partioning
 We use an encrypted `root`. We do not have the need for encrypted boot

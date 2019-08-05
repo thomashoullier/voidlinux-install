@@ -4,6 +4,7 @@
 # 1. Device. Eg. "/dev/sda"
 # 2. Volume groupe name. Eg. "void"
 # 3. Hostname.
+# 4. Bootloader id.
 
 wget https://alpha.de.repo.voidlinux.org/static/xbps-static-latest.x86_64-musl.tar.xz
 sudo tar xf xbps-static-latest.x86_64-musl.tar.xz -C /mnt
@@ -49,5 +50,5 @@ sudo mkdir /mnt/boot/grub
 
 # Chroot and run final configuration script:
 sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
-sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
+sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh $4"
 
