@@ -42,3 +42,10 @@ echo "$3" | sudo tee /mnt/etc/hostname > /dev/null
 echo "hostonly=yes" | sudo tee /mnt/etc/dracut.conf.d/hostonly.conf > /dev/null
 
 sudo cp -f grub /mnt/etc/default/grub
+
+sudo cp -f libc-locales /mnt/etc/default/libc-locales
+
+# Chroot and run final configuration script:
+sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
+sudo chroot /mnt /bin/bash -c "/bin/sh chroot-script.sh"
+
