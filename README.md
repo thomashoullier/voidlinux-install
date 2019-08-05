@@ -6,6 +6,8 @@ Linux distribution. We also write the deployment of our personal configuration.
 To run the scripts, you need:
 * `sfdisk`: A scriptable version of `fdisk`.
 * `cryptsetup`: To configure the encrypted LVM LUKS partition.
+* `wget`
+* `mkfs.fat`, `mkswap` and `mkfs.ext4`.
 
 ## Installation
 We use an encrypted `root`. We do not have the need for encrypted boot
