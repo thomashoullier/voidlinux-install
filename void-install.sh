@@ -6,4 +6,4 @@
 
 ./partitioning.sh "$1"
 ./lvm-setup.sh "$1" "$2"
-./base-install.sh
+./base-install.sh "$1"
