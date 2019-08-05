@@ -5,6 +5,7 @@ Linux distribution. We also write the deployment of our personal configuration.
 ## Dependencies
 To run the scripts, you need:
 * `sfdisk`: A scriptable version of `fdisk`.
+* `cryptsetup`: To configure the encrypted LVM LUKS partition.
 
 ## Installation
 We use an encrypted `root`. We do not have the need for encrypted boot
