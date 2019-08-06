@@ -1,7 +1,6 @@
 #!/bin/sh
 # Script to be executed while chrooted in the new Void Linux.
 # You must be chrooted as root.
-# $1: Bootloader id
 
 # Define new root password
 passwd root
@@ -10,8 +9,7 @@ chmod 755 /
 
 mkdir /boot/EFI
 grub-mkconfig -o /boot/grub/grub.cfg
-grub-install --target=x86_64-efi --efi-directory=/boot \
---bootloader-id="$1" --removable --no-nvram
+grub-install --target=x86_64-efi --efi-directory=/boot --removable --no-nvram
 
 xbps-reconfigure -f glibc-locales
 
