@@ -4,6 +4,7 @@
 # 1. Device. Eg. "/dev/sda"
 # 2. Volume groupe name. Eg. "void"
 # 3. Hostname.
+# 4. Boot partition label. Must be locally unique.
 
 wget https://alpha.de.repo.voidlinux.org/static/xbps-static-latest.x86_64-musl.tar.xz
 sudo tar xf xbps-static-latest.x86_64-musl.tar.xz -C /mnt
@@ -39,13 +40,12 @@ sudo mkdir /mnt/boot/grub
 sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
 sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
 
-# Get the PARTUUID of the EFI partition.
-# The UUID is changed on first boot.
-partuuid_efi=$(blkid -o value -s PARTUUID "$1"1)
+# The UUID and PARTUUID is changed on first boot.
+sudo e2label "$1"1 "$4"
 
 echo "tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0" | sudo tee /mnt/etc/fstab \
 > /dev/null
-echo "PARTUUID=$partuuid_efi /boot vfat defaults 0 2" \
+echo "LABEL=$4 /boot vfat defaults 0 2" \
 | sudo tee -a /mnt/etc/fstab > /dev/null
 echo "/dev/mapper/$2-root / ext4 defaults,noatime 0 1" | sudo tee -a \
 /mnt/etc/fstab > /dev/null
