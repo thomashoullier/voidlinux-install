@@ -8,11 +8,13 @@ passwd root
 chown root:root /
 chmod 755 /
 
+mkdir /boot/EFI
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-install --target=x86_64-efi --efi-directory=/boot \
---bootloader-id="$1" --recheck
+--bootloader-id="$1" --removable --no-nvram
 
 xbps-reconfigure -f glibc-locales
 
 linuxver=$(uname -r | awk -F. '{print $1 FS $2}')
 xbps-reconfigure -f linux"$linuxver"
+
