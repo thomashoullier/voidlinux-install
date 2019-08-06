@@ -5,7 +5,7 @@ Linux distribution.
 ## Dependencies
 To run the scripts, you need:
 * `sfdisk`: A scriptable version of `fdisk`.
-* `cryptsetup`: To configure the encrypted LVM LUKS partition.
+* `cryptsetup` and `lvm2`: To configure the encrypted LVM LUKS partition.
 * `wget`
 * `mkfs.fat`, `mkswap` and `mkfs.ext4`.
 
