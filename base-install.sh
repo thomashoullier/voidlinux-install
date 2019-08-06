@@ -40,9 +40,7 @@ sudo mkdir /mnt/boot/grub
 sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
 sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
 
-# The UUID and PARTUUID is changed on first boot.
-sudo e2label "$1"1 "$4"
-
+# The UUID and PARTUUID is changed on first boot. We use a LABEL.
 echo "tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0" | sudo tee /mnt/etc/fstab \
 > /dev/null
 echo "LABEL=$4 /boot vfat defaults 0 2" \
@@ -51,4 +49,8 @@ echo "/dev/mapper/$2-root / ext4 defaults,noatime 0 1" | sudo tee -a \
 /mnt/etc/fstab > /dev/null
 echo "/dev/mapper/$2-swap none swap defaults 0 1" | sudo tee -a /mnt/etc/fstab \
 > /dev/null
+
+# Unmounting the boot partition to write the label
+sudo umount "$1"1
+sudo fatlabel "$1"1 "$4"
 
