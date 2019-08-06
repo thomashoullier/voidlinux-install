@@ -47,4 +47,4 @@ enough.
 
 ## References
 1. https://wiki.voidlinux.org/Install_LVM_LUKS_on_UEFI_GPT
-1. https://wiki.voidlinux.org/Post_Installation#Wireless-only_access
+1. https://wiki.voidlinux.org/Post_Installation
