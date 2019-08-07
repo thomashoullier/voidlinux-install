@@ -36,10 +36,6 @@ sudo cp -f libc-locales /mnt/etc/default/libc-locales
 
 sudo mkdir /mnt/boot/grub
 
-# Chroot and run final configuration script:
-sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
-sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
-
 # The UUID and PARTUUID is changed on first boot. We use a LABEL.
 echo "tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0" | sudo tee /mnt/etc/fstab \
 > /dev/null
@@ -49,6 +45,10 @@ echo "/dev/mapper/$2-root / ext4 defaults,noatime 0 1" | sudo tee -a \
 /mnt/etc/fstab > /dev/null
 echo "/dev/mapper/$2-swap none swap defaults 0 1" | sudo tee -a /mnt/etc/fstab \
 > /dev/null
+
+# Chroot and run final configuration script:
+sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
+sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
 
 # Unmounting the boot partition to write the label
 sudo umount "$1"1
