@@ -46,11 +46,12 @@ echo "/dev/mapper/$2-root / ext4 defaults,noatime 0 1" | sudo tee -a \
 echo "/dev/mapper/$2-swap none swap defaults 0 1" | sudo tee -a /mnt/etc/fstab \
 > /dev/null
 
-# Chroot and run final configuration script:
-sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
-sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
-
 # Unmounting the boot partition to write the label
 sudo umount "$1"1
 sudo fatlabel "$1"1 "$4"
+sudo mount "$1"1 /mnt/boot
+
+# Chroot and run final configuration script:
+sudo cp -f chroot-script.sh /mnt/home/chroot-script.sh
+sudo chroot /mnt /bin/bash -c "/bin/sh /home/chroot-script.sh"
 

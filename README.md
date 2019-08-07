@@ -28,6 +28,18 @@ You end up with a fully functional Void Linux installation. This of course is
 pretty minimal in itself (at least compared with bloated Linux distributions).
 You can refer to [2] if you have no idea what to do next.
 
+## Issues
+* Somehow, you still need to run the following (replacing `X.XX` by the 
+installed version of the kernel) at the first boot for all the configuration
+to fall into place:
+
+```shell
+xbps-reconfigure -f linuxX.XX
+```
+
+Running it while chrooted doesn't seem to take into account the `noatime` in
+`fstab` for example.
+
 ## Partioning
 We use an encrypted `root`. We do not have the need for encrypted boot
 currently. The template we use on the disk is:
