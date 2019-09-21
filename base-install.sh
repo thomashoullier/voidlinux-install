@@ -16,9 +16,9 @@ sudo /mnt/usr/bin/xbps-install \
 sudo rm xbps-static-latest.x86_64-musl.tar.xz
 
 # Mount some directories before chrooting
-sudo mkdir /mnt/dev
-sudo mkdir /mnt/proc
-sudo mkdir /mnt/sys
+sudo mkdir -p /mnt/dev
+sudo mkdir -p /mnt/proc
+sudo mkdir -p /mnt/sys
 sudo mount -t proc /proc /mnt/proc
 sudo mount --rbind /dev /mnt/dev
 sudo mount --rbind /sys /mnt/sys
